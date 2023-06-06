@@ -77,9 +77,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ScrollPane fx:id="scolPane" accessibleRole="SCROLL_BAR" blendMode="SCREEN" layoutX="41.0" layoutY="91.0" prefHeight="622.0" prefWidth="423.0">
+      <ScrollPane fx:id="scolPane" accessibleRole="SCROLL_BAR" layoutX="41.0" layoutY="91.0" prefHeight="622.0" prefWidth="423.0" style="-fx-background-color: #a6a6a6;">
          <content>
-            <VBox fx:id="vbox_messages" prefHeight="619.0" prefWidth="418.0">
+            <VBox fx:id="vbox_messages" prefHeight="619.0" prefWidth="404.0" style="-fx-background-color: #E8E0DD;">
                <children>
                   <HBox prefHeight="52.0" prefWidth="418.0">
                      <children>
@@ -90,6 +90,8 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Pane layoutX="443.0" layoutY="91.0" prefHeight="622.0" prefWidth="20.0" style="-fx-background-color: #E8E0DD;" />
+      <Pane layoutX="41.0" layoutY="691.0" prefHeight="25.0" prefWidth="423.0" style="-fx-background-color: #E8E0DD;" />
       <AnchorPane fx:id="emojiPane" layoutY="680.0" opacity="0.84" prefHeight="50.0" prefWidth="500.0" visible="false">
          <children>
             <HBox layoutX="11.0" prefHeight="34.0" prefWidth="481.0" style="-fx-background-color: #a6a6a6; -fx-background-radius: 16;">

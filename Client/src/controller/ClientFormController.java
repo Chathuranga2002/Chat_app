@@ -38,6 +38,7 @@ public class ClientFormController extends Thread implements Initializable {
     Socket socket;
     BufferedReader reader;
     PrintWriter writer;
+    Image image;
 
     public VBox vbox_messages;
     @FXML
@@ -136,9 +137,88 @@ public class ClientFormController extends Thread implements Initializable {
                     firstChars = st.substring(0, 3);
 
                 }
+                if (firstChars.equalsIgnoreCase("emo")) {
+                    st = st.substring(3, st.length() - 1);
+
+                    int emoji=Integer.parseInt(st);
+                    switch (emoji){
+                        case 1:
+                            image=new Image("/view/image/imoji/1.png");
+                            System.out.println("1");
+                            break;
+                        case 2:
+                            image=new Image("/view/image/imoji/2.png");
+                            System.out.println("2");
+                            break;
+                        case 3:
+                            image=new Image("/view/image/imoji/3.png");
+                            System.out.println("3");
+                            break;
+                        case 4:
+                            image=new Image("/view/image/imoji/4.png");
+                            System.out.println("4");
+                            break;
+                        case 5:
+                            image=new Image("/view/image/imoji/5.png");
+                            System.out.println("5");
+                            break;
+                        case 6:
+                            image=new Image("/view/image/imoji/6.png");
+                            System.out.println("6");
+                            break;
+                        case 7:
+                            image=new Image("/view/image/imoji/7.png");
+                            System.out.println("7");
+                            break;
+                        case 8:
+                            image=new Image("/view/image/imoji/8.png");
+                            System.out.println("8");
+                            break;
+                        case 9:
+                            image=new Image("/view/image/imoji/9.png");
+                            System.out.println("9");
+                            break;
+                    }
 
 
-                if (firstChars.equalsIgnoreCase("img")) {
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(60);
+                    imageView.setFitWidth(60);
+
+                    HBox hBox = new HBox(10);
+                    hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+
+                    if (!cmd.equalsIgnoreCase(nameId.getText())) {
+
+                        vbox_messages.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+
+
+                        Text text1 = new Text("  " + cmd + " :");
+                        hBox.getChildren().add(text1);
+                        hBox.getChildren().add(imageView);
+                        hBox.setPadding(new Insets(5,5,4,10));
+
+                    } else {
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(imageView);
+                        Text text1 = new Text(" ");
+                        hBox.getChildren().add(text1);
+                        hBox.setPadding(new Insets(5,5,4,10));
+
+
+                    }
+
+                    Platform.runLater(() -> vbox_messages.getChildren().addAll(hBox));
+
+
+                }
+
+
+
+
+               else if (firstChars.equalsIgnoreCase("img")) {
                     //for the Images
 
                     st = st.substring(3, st.length() - 1);
@@ -172,7 +252,7 @@ public class ClientFormController extends Thread implements Initializable {
                     } else {
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
                         hBox.getChildren().add(imageView);
-                        Text text1 = new Text(": Me ");
+                        Text text1 = new Text(" ");
                         hBox.getChildren().add(text1);
                         hBox.setPadding(new Insets(5,5,4,10));
 
@@ -187,12 +267,12 @@ public class ClientFormController extends Thread implements Initializable {
 
 
                     if (!cmd.equalsIgnoreCase(nameId.getText() + ":")) {
-                        Text txtName = new Text(cmd + " ");
+                        Text txtName = new Text(cmd + " \n"+"  ");
                         txtName.getStyleClass().add("txtName");
                         tempFlow.getChildren().add(txtName);
 
                         tempFlow.setStyle("-fx-color: rgb(239,242,255);" +
-                                "-fx-background-color: rgb(15,125,242);" +
+                                "-fx-background-color: #FFFFFF;" +
                                 " -fx-background-radius: 10px");
                         tempFlow.setPadding(new Insets(3,10,3,10));
                     }
@@ -217,14 +297,14 @@ public class ClientFormController extends Thread implements Initializable {
 
                     } else {
 
-                        Text text2 = new Text(fullMsg + ": Me");
+                        Text text2 = new Text(fullMsg + " ");
                         TextFlow flow2 = new TextFlow(text2);
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
                         hBox.getChildren().add(flow2);
                         hBox.setPadding(new Insets(2,5,2,10));
 
                         flow2.setStyle("-fx-color: rgb(239,242,255);" +
-                                "-fx-background-color: rgb(191,241,9);" +
+                                "-fx-background-color: #DCF8C6;" +
                                 "-fx-background-radius: 10px");
                         flow2.setPadding(new Insets(3,10,3,10));
 
@@ -260,49 +340,60 @@ public class ClientFormController extends Thread implements Initializable {
     @FXML
     void angrySelected(MouseEvent event) {
 
-        writer.println(nameId.getText() + ": " + hahaImg.getImage());
+        writer.println(nameId.getText() + " " + "emo" + "7");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void coolSlected(MouseEvent event) {
-
+        writer.println(nameId.getText() + " " + "emo" + "4");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void danceSSelected(MouseEvent event) {
-
+        writer.println(nameId.getText() + " " + "emo" + "9");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void hahaSelect(MouseEvent event) {
-
+        writer.println(nameId.getText() + " " + "emo" + "1");
+        emojiPane.setVisible(false);
     }
 
 
     @FXML
     void lolslected(MouseEvent event) {
-
+        writer.println(nameId.getText() + " " + "emo" + "8");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void loveSelect(MouseEvent event) {
+        writer.println(nameId.getText() + " " + "emo" + "3");
+        emojiPane.setVisible(false);
 
     }
 
     @FXML
     void sadselected(MouseEvent event) {
+        writer.println(nameId.getText() + " " + "emo" + "5");
+        emojiPane.setVisible(false);
 
     }
     
 
     @FXML
     void smaileslected(MouseEvent event) {
-
+        writer.println(nameId.getText() + " " + "emo" + "6");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void wowSlected(MouseEvent event) {
-
+        writer.println(nameId.getText() + " " + "emo" + "2");
+        emojiPane.setVisible(false);
     }
 
 
