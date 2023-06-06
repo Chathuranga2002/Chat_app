@@ -6,8 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -19,6 +21,8 @@ public class LoginFormController {
 
     @FXML
     private TextField txtName;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @FXML
     void joineOnAction(ActionEvent event) throws IOException {
@@ -32,12 +36,24 @@ public class LoginFormController {
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Chat with Play Tech");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.show();
+        scene.setOnMousePressed(this::handleMousePressed);
+        scene.setOnMouseDragged(this::handleMouseDragged);
 
 
         txtName.clear();
     }
+    private void handleMousePressed(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+    private void handleMouseDragged(MouseEvent event) {
+        Stage primaryStage = (Stage) ((Scene) event.getSource()).getWindow();
+        primaryStage.setX(event.getScreenX() - xOffset);
+        primaryStage.setY(event.getScreenY() - yOffset);
+    }
+
 }

@@ -32,6 +32,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ClientFormController extends Thread implements Initializable {
+    public AnchorPane MainePane;
+    public AnchorPane emojiPane;
+    public ImageView hahaImg;
     Socket socket;
     BufferedReader reader;
     PrintWriter writer;
@@ -48,6 +51,8 @@ public class ClientFormController extends Thread implements Initializable {
 
 
 
+
+
     private FileChooser fileChooser;
     private File filePath;
 
@@ -55,11 +60,14 @@ public class ClientFormController extends Thread implements Initializable {
 
     @FXML
     void ExitOnAction(MouseEvent event) {
+        System.exit(0);
 
     }
 
     @FXML
     void MiniMiszedOnAction(MouseEvent event) {
+
+
 
     }
 
@@ -77,18 +85,25 @@ public class ClientFormController extends Thread implements Initializable {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image");
         this.filePath = fileChooser.showOpenDialog(stage);
-        writer.println(nameId.getText() + " " + "img" + filePath.getPath());
 
+        writer.println(nameId.getText() + " " + "img" + filePath.getPath());
+        System.out.println(filePath);
     }
 
     @FXML
     void imojiEvent(MouseEvent event) {
-
+        if (emojiPane.isVisible()) {
+            emojiPane.setVisible(false);
+        }else {
+            emojiPane.setVisible(true);
+        }
     }
 
     @FXML
     void sendOnAction(ActionEvent event) {
-
+        String msg = txtFeld.getText();
+        writer.println(nameId.getText() + ": " + msg);
+        txtFeld.clear();
     }
 
     @Override
@@ -134,8 +149,9 @@ public class ClientFormController extends Thread implements Initializable {
 
                     ImageView imageView = new ImageView(image);
 
-                    imageView.setFitHeight(150);
-                    imageView.setFitWidth(200);
+                    imageView.setFitHeight(100);
+                    imageView.setFitWidth(150);
+
 
 
                     HBox hBox = new HBox(10);
@@ -151,12 +167,14 @@ public class ClientFormController extends Thread implements Initializable {
                         Text text1 = new Text("  " + cmd + " :");
                         hBox.getChildren().add(text1);
                         hBox.getChildren().add(imageView);
+                        hBox.setPadding(new Insets(5,5,4,10));
 
                     } else {
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
                         hBox.getChildren().add(imageView);
                         Text text1 = new Text(": Me ");
                         hBox.getChildren().add(text1);
+                        hBox.setPadding(new Insets(5,5,4,10));
 
 
                     }
@@ -164,8 +182,7 @@ public class ClientFormController extends Thread implements Initializable {
                     Platform.runLater(() -> vbox_messages.getChildren().addAll(hBox));
 
 
-                } else {
-
+                } else  {
                     TextFlow tempFlow = new TextFlow();
 
 
@@ -229,7 +246,7 @@ public class ClientFormController extends Thread implements Initializable {
         nameId.setText(name);
         try {
             socket = new Socket("localhost", 50000);
-            System.out.println("Socket is connected with server!");
+            System.out.println(name+" connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
 
@@ -240,4 +257,54 @@ public class ClientFormController extends Thread implements Initializable {
 
 
     }
+    @FXML
+    void angrySelected(MouseEvent event) {
+
+        writer.println(nameId.getText() + ": " + hahaImg.getImage());
+    }
+
+    @FXML
+    void coolSlected(MouseEvent event) {
+
+    }
+
+    @FXML
+    void danceSSelected(MouseEvent event) {
+
+    }
+
+    @FXML
+    void hahaSelect(MouseEvent event) {
+
+    }
+
+
+    @FXML
+    void lolslected(MouseEvent event) {
+
+    }
+
+    @FXML
+    void loveSelect(MouseEvent event) {
+
+    }
+
+    @FXML
+    void sadselected(MouseEvent event) {
+
+    }
+    
+
+    @FXML
+    void smaileslected(MouseEvent event) {
+
+    }
+
+    @FXML
+    void wowSlected(MouseEvent event) {
+
+    }
+
+
+
 }
