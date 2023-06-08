@@ -76,7 +76,7 @@ public class ClientFormController extends Thread implements Initializable {
     void SendBtnOnAction(MouseEvent event)  {
 
         String msg = txtFeld.getText();
-        writer.println(nameId.getText() + ": " + msg);
+        writer.println(nameId.getText() + ", " + msg);
         txtFeld.clear();
     }
 
@@ -103,7 +103,7 @@ public class ClientFormController extends Thread implements Initializable {
     @FXML
     void sendOnAction(ActionEvent event) {
         String msg = txtFeld.getText();
-        writer.println(nameId.getText() + ": " + msg);
+        writer.println(nameId.getText() + ", " + msg);
         txtFeld.clear();
     }
 
@@ -266,7 +266,7 @@ public class ClientFormController extends Thread implements Initializable {
                     TextFlow tempFlow = new TextFlow();
 
 
-                    if (!cmd.equalsIgnoreCase(nameId.getText() + ":")) {
+                    if (!cmd.equalsIgnoreCase(nameId.getText() + ",")) {
                         Text txtName = new Text(cmd + " \n"+"  ");
                         txtName.getStyleClass().add("txtName");
                         tempFlow.getChildren().add(txtName);
@@ -287,7 +287,7 @@ public class ClientFormController extends Thread implements Initializable {
 
 
 
-                    if (!cmd.equalsIgnoreCase(nameId.getText() + ":")) {
+                    if (!cmd.equalsIgnoreCase(nameId.getText() + ",")) {
 
 
                         vbox_messages.setAlignment(Pos.TOP_LEFT);
